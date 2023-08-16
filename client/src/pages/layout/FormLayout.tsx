@@ -28,7 +28,8 @@ const Form = ({ isForSignIn }: ForSignIn) => {
         <span className="hidden">Checking ...</span>
 
         <span>
-          <NavLink to="home">{isForSignIn ? "Sign In" : "Sign Up"}</NavLink>
+          {isForSignIn && <NavLink to="home">Sign In</NavLink>}
+          {!isForSignIn && <NavLink to="/">Sign Up</NavLink>}
         </span>
       </button>
     </form>
