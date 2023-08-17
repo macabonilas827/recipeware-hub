@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.form-input {
+.form-input-borderGreen {
   @apply mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm
-   focus:outline-none
-   focus:border-green-500
-   focus:ring-1
-   focus:ring-green-500
-   focus:invalid:border-red-500 focus:invalid:ring-red-500;
+  focus:outline-none
+  focus:ring-1
+  focus:invalid:border-red-500 focus:invalid:ring-red-500 focus:border-green-500 focus:ring-green-500;
+}
+.form-input-borderOrange {
+  @apply mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm
+  focus:outline-none
+  focus:ring-1
+  focus:invalid:border-red-500 focus:invalid:ring-red-500 focus:border-orange-500 focus:ring-orange-500;
 }

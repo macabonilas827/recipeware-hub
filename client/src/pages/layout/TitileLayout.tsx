@@ -1,6 +1,12 @@
-export default function TitleLayout() {
+interface TitleColor {
+  titleColor: string;
+}
+
+export default function TitleLayout({ titleColor }: TitleColor) {
   return (
-    <div className="flex items-center justify-center text-base font-black text-green-900 m3">
+    <div
+      className={`flex items-center justify-center text-base font-black ${titleColor} m3`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
