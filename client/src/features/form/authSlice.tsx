@@ -16,7 +16,7 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: "signIn",
+  name: "auth",
   initialState,
   reducers: {
     signInSuccess: (state, action: PayloadAction<User>) => {
