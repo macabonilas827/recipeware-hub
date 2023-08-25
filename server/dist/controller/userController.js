@@ -1,10 +1,21 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerUser = void 0;
-const registerUser = (req, res) => {
+import { User, validate } from "../model/User.js";
+export const registerUser = async (req, res) => {
     const { username, password, email } = req.body;
-    res
-        .status(200)
-        .send(`thank you ${username} ${email} ${password} for registering }`);
+    const { error } = validate({ username, password, email });
+    if (error)
+        return res.status(404).send(error?.message);
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+        return res
+            .status(409)
+            .send({ message: `User ${existingUser.email} already exists` });
+    try {
+        // Create a new user
+        const user = await User.create({ username, password, email });
+        res.status(201).send({ user, message: "User registered successfully" });
+    }
+    catch (error) {
+        res.status(500).send("An error occurred while registering the user.");
+    }
 };
-exports.registerUser = registerUser;
+//# sourceMappingURL=userController.js.map

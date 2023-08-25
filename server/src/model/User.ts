@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 import Joi from "joi";
 
-const { Schema } = mongoose;
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -23,17 +21,16 @@ const userSchema = new Schema({
     maxlength: 255,
   },
   isAdmin: Boolean,
-  isDemoUser: Boolean,
 });
 
-const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
 
 //function to validate using Joi
-function validate(user) {
+export function validate(user: Object) {
   const schema = Joi.object({
-    name: Joi.string()
+    username: Joi.string()
       .pattern(/^[a-z\s\d]{5,12}$/i)
-      .message("Name must be at least 5 characters long")
+      .message("Username must be at least 5 characters long")
       .required(),
     password: Joi.string()
       .pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/)
@@ -50,5 +47,3 @@ function validate(user) {
   //return function to the user route in order to validate the user inputted credentials pattern
   return schema.validate(user);
 }
-
-module.exports = { User, validate };
