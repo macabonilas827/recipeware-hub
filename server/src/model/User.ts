@@ -20,7 +20,10 @@ const userSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 255,
   },
-  isAdmin: Boolean,
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const User = mongoose.model("User", userSchema);
@@ -29,8 +32,10 @@ export const User = mongoose.model("User", userSchema);
 export function validate(user: Object) {
   const schema = Joi.object({
     username: Joi.string()
-      .pattern(/^[a-z\s\d]{5,12}$/i)
-      .message("Username must be at least 5 characters long")
+      .pattern(/^[a-z\s\d_]{3,20}$/i)
+      .message(
+        "Username must contain only letters, digits or underscore and atleast 3 characters long"
+      )
       .required(),
     password: Joi.string()
       .pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/)
