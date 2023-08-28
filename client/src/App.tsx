@@ -1,20 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import RootLayout from "./pages/RootLayout";
 import Home from "../src/pages/Home";
-import Register from "../src/pages/Register";
+// import Register from "../src/pages/Register";
+import Login from "./auth/Login";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <RootLayout />,
+    path: "/recipewarehub/users/login",
+    element: <Login />,
   },
+  // {
+  //   path: "register",
+  //   element: <Register />,
+  // },
   {
-    path: "register",
-    element: <Register />,
-  },
-  {
-    path: "home",
+    path: "/recipewarehub/users/home",
     element: <Home />,
   },
 ]);
