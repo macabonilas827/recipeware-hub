@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import bcrypt from "bcrypt";
-import { User } from "../model/User.js";
+import User from "../model/User.js";
 import jwt from "jsonwebtoken";
 
 interface RequestBody {
@@ -26,7 +26,8 @@ export const loginUser: RequestHandler = async (req, res) => {
         roles: user.isAdmin,
       },
     },
-    process.env.ACCESS_TOKEN_SECRET
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "1m" }
   );
-  res.json({ message: "You are login", accessToken });
+  res.json({ accessToken });
 };

@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
 });
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 //function to validate using Joi
 export function validate(user) {
     const schema = Joi.object({
@@ -44,4 +44,5 @@ export function validate(user) {
     //return function to the user route in order to validate the user inputted credentials pattern
     return schema.validate(user);
 }
+export default User;
 //# sourceMappingURL=User.js.map

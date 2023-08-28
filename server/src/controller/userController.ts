@@ -1,5 +1,5 @@
 import { RequestHandler, Request } from "express";
-import { User, validate } from "../model/User.js";
+import User, { validate } from "../model/User.js";
 import bcrypt from "bcrypt";
 
 interface RequestBody {

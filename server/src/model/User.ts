@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Joi from "joi";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -26,7 +27,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 //function to validate using Joi
 export function validate(user: Object) {
@@ -52,3 +53,5 @@ export function validate(user: Object) {
   //return function to the user route in order to validate the user inputted credentials pattern
   return schema.validate(user);
 }
+
+export default User;

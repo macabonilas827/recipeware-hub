@@ -1,4 +1,4 @@
-import { User, validate } from "../model/User.js";
+import User, { validate } from "../model/User.js";
 import bcrypt from "bcrypt";
 export const registerUser = async (req, res) => {
     const { username, password, email } = req.body;

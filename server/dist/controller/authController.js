@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User } from "../model/User.js";
+import User from "../model/User.js";
 import jwt from "jsonwebtoken";
 export const loginUser = async (req, res) => {
     const { username, password } = req.body;
@@ -16,7 +16,7 @@ export const loginUser = async (req, res) => {
             username: user.username,
             roles: user.isAdmin,
         },
-    }, process.env.ACCESS_TOKEN_SECRET);
-    res.json({ message: "You are login", accessToken });
+    }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1m" });
+    res.json({ accessToken });
 };
 //# sourceMappingURL=authController.js.map
